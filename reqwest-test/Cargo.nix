@@ -193,7 +193,6 @@ rec {
           {
             name = "reqwest";
             packageId = "reqwest 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)";
-            features = [ "json" "blocking" ];
           }
         ];
         features = {
@@ -417,21 +416,6 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
-    "futures-io 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)"
-      = rec {
-        crateName = "futures-io";
-        version = "0.3.1";
-        edition = "2018";
-        sha256 = "1zxm41fmkrb0r39ajk3rr9invcd5bdwlafazn8m9aw4y49ymfxp6";
-        libName = "futures_io";
-        authors = [
-          "Alex Crichton <alex@alexcrichton.com>"
-        ];
-        features = {
-          "default" = [ "std" ];
-        };
-        resolvedDefaultFeatures = [ "std" ];
-      };
     "futures-sink 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
         crateName = "futures-sink";
@@ -462,7 +446,6 @@ rec {
           "default" = [ "std" ];
           "std" = [ "alloc" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "std" ];
       };
     "futures-util 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -481,30 +464,13 @@ rec {
             usesDefaultFeatures = false;
           }
           {
-            name = "futures-io";
-            packageId = "futures-io 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-            usesDefaultFeatures = false;
-            features = [ "std" ];
-          }
-          {
             name = "futures-task";
             packageId = "futures-task 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)";
             usesDefaultFeatures = false;
           }
           {
-            name = "memchr";
-            packageId = "memchr 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-          }
-          {
             name = "pin-utils";
             packageId = "pin-utils 0.1.0-alpha.4 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "slab";
-            packageId = "slab 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
           }
         ];
         features = {
@@ -521,7 +487,6 @@ rec {
           "std" = [ "alloc" "futures-core/std" "futures-task/std" "slab" ];
           "unstable" = [ "futures-core/unstable" "futures-task/unstable" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "futures-io" "io" "memchr" "slab" "std" ];
       };
     "getrandom 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -636,27 +601,6 @@ rec {
         ];
         features = {
         };
-      };
-    "hermit-abi 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)"
-      = rec {
-        crateName = "hermit-abi";
-        version = "0.1.6";
-        edition = "2015";
-        sha256 = "0wippj5nkw9q5yyyaqpdrgdhag3l3nbrwja7149cwn7ii1nnbwpg";
-        authors = [
-          "Stefan Lankes"
-        ];
-        dependencies = [
-          {
-            name = "libc";
-            packageId = "libc 0.2.66 (registry+https://github.com/rust-lang/crates.io-index)";
-            usesDefaultFeatures = false;
-          }
-        ];
-        features = {
-          "rustc-dep-of-std" = [ "core" "compiler_builtins/rustc-dep-of-std" "libc/rustc-dep-of-std" ];
-        };
-        resolvedDefaultFeatures = [ "default" ];
       };
     "http 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -1307,29 +1251,6 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
-    "num_cpus 1.11.1 (registry+https://github.com/rust-lang/crates.io-index)"
-      = rec {
-        crateName = "num_cpus";
-        version = "1.11.1";
-        edition = "2015";
-        sha256 = "0wlxs00cpg16z09fwchj1gdz1jxnf5dgg1cbidvq0sc75bnwbnkn";
-        authors = [
-          "Sean McArthur <sean@seanmonstar.com>"
-        ];
-        dependencies = [
-          {
-            name = "hermit-abi";
-            packageId = "hermit-abi 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)";
-            target = features: (((target."arch" == "x86_64") || (target."arch" == "aarch64")) && (target."os" == "hermit"));
-          }
-          {
-            name = "libc";
-            packageId = "libc 0.2.66 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-        ];
-        features = {
-        };
-      };
     "openssl 0.10.26 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
         crateName = "openssl";
@@ -1834,12 +1755,6 @@ rec {
             target = features: (!(target."arch" == "wasm32"));
           }
           {
-            name = "serde_json";
-            packageId = "serde_json 1.0.44 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-            target = features: (!(target."arch" == "wasm32"));
-          }
-          {
             name = "serde_urlencoded";
             packageId = "serde_urlencoded 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)";
             target = features: (!(target."arch" == "wasm32"));
@@ -1900,7 +1815,7 @@ rec {
           "native-tls-vendored" = [ "native-tls" "native-tls-crate/vendored" ];
           "rustls-tls" = [ "hyper-rustls" "tokio-rustls" "webpki-roots" "rustls" "__tls" ];
         };
-        resolvedDefaultFeatures = [ "__tls" "blocking" "default" "default-tls" "hyper-tls" "json" "native-tls-crate" "serde_json" "tokio-tls" ];
+        resolvedDefaultFeatures = [ "__tls" "default" "default-tls" "hyper-tls" "native-tls-crate" "tokio-tls" ];
       };
     "ryu 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2256,11 +2171,6 @@ rec {
             optional = true;
           }
           {
-            name = "num_cpus";
-            packageId = "num_cpus 1.11.1 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-          }
-          {
             name = "pin-project-lite";
             packageId = "pin-project-lite 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)";
           }
@@ -2290,7 +2200,7 @@ rec {
           "udp" = [ "io-driver" ];
           "uds" = [ "io-driver" "mio-uds" "libc" ];
         };
-        resolvedDefaultFeatures = [ "blocking" "default" "fnv" "io-driver" "io-util" "iovec" "lazy_static" "memchr" "mio" "num_cpus" "rt-core" "rt-threaded" "slab" "sync" "tcp" "time" ];
+        resolvedDefaultFeatures = [ "blocking" "default" "fnv" "io-driver" "io-util" "iovec" "lazy_static" "memchr" "mio" "rt-core" "slab" "sync" "tcp" "time" ];
       };
     "tokio-tls 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
