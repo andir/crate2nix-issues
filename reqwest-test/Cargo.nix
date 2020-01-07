@@ -20,7 +20,7 @@ rec {
   #
 
   rootCrate = rec {
-    packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/tmp/c2nix-reqwest)";
+    packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/crate2nix-issues/reqwest-test)";
 
     # Use this attribute to refer to the derivation building your root crate package.
     # You can override the features with rootCrate.build.override { features = [ "default" "feature1" ... ]; }.
@@ -40,9 +40,9 @@ rec {
   # workspaceMembers."${crateName}".build.override { features = [ "default" "feature1" ... ]; }.
   workspaceMembers = {
     "c2nix-reqwest" = rec {
-      packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/tmp/c2nix-reqwest)";
+      packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/crate2nix-issues/reqwest-test)";
       build = buildRustCrateWithFeatures {
-        packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/tmp/c2nix-reqwest)";
+        packageId = "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/crate2nix-issues/reqwest-test)";
         features = rootFeatures;
       };
       
@@ -177,7 +177,7 @@ rec {
         };
         resolvedDefaultFeatures = [ "simd" "std" ];
       };
-    "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/tmp/c2nix-reqwest)"
+    "c2nix-reqwest 0.1.0 (path+file:///home/andi/dev/private/crate2nix-issues/reqwest-test)"
       = rec {
         crateName = "c2nix-reqwest";
         version = "0.1.0";
