@@ -1,0 +1,13 @@
+[package]
+name = "sumstring"
+version = "0.1.0"
+authors = ["Andreas Rammhold <andreas@rammhold.de>"]
+edition = "2018"
+
+[lib]
+name = "sumstring"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.9.2"
+features = ["extension-module"]
